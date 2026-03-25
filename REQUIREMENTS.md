@@ -59,6 +59,11 @@ A Photo represents an individual photo and has the following properties:
     - If true, treat as if it does not exist
 - Creation timestamp
 - Import timestamp
+- Additional metadata for film photos
+    - Camera
+    - Film type
+    - ISO
+- Film vs digital label
 
 
 ## Album
@@ -77,14 +82,50 @@ An Album represents a grouping of several related photos and has the following p
 
 A Tag represents an arbitrary property of a Photo and has the following properties
 - Name
+    - No special characters
+    - No spaces
 - Hidden-ness
 
 # Endpoints
 
 ## Home
 
+Path: `/`
+
 Should show a list of albums with their descriptions and cover photos, most recently added first.
 
+## Photo view
+
+Path: `/photo/{photo_id}`
+
+Should show a single photo in the context of an album. Should use medium resolution image and show image metadata as well. Should display a link to full resolution image file.
+
+## Album view
+
+Path: `/album/{id}/photos`
+Path: `/album/{id}/page/{page_num}/photos` ???
+
+Should show a list of photos in the album with id `{id}` ordered by creation timestamp. Should be paginated if there are more than 100 (TBD) photos in the list???
+
+## Album photo view
+
+Path: `/album/{album_id}/photo/{photo_id}`
+
+As photo view, but should also provide links to next and previous photos in album.
+
+## Tag view
+
+Path: `/tag/{tag_name}/photos`
+
+Should show a list of photos with the tag `{tag_name}` ordered by creation timestamp, newest first.
+
+Maybe this needs pagination?
+
+## Tag photo view
+
+Path: `/tag/{tag_name}/photo/{photo_id}`
+
+As photo view, but should also provide links to next and previous photos in parent tag view.
 
 # Technical architecture
 
@@ -119,5 +160,5 @@ Do you need a CDN?
 
 ## Deployment
 ???
-scp for starters
+scp for starters?
 
