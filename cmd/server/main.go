@@ -1,7 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+)
+
+const (
+	Port = ":8080"
+)
 
 func main() {
-	fmt.Println("one day i'll grow up to be a server")
+	http.HandleFunc("/", handler)
+	log.Fatal(http.ListenAndServe(Port, nil))
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("fdsafdas"))
 }
