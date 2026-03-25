@@ -31,6 +31,7 @@
 
 ## Post-MVP scope
 - Usage analytics
+- Caching layer
 - Private galleries
     - Scope TBD
     - Ability to flag images as public or hidden
@@ -40,10 +41,19 @@
 
 # Technical architecture
 
+## Server
+Go application
+
+Gorilla mux?
+
 ## Image metadata storage
 TBD - Relational DB?
 
+## Tooling
+???
+
 ## Hosting
 TBD - EC2?
+Do you need a CDN?
 
 
