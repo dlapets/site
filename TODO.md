@@ -93,6 +93,9 @@ Go application
 
 Gorilla mux?
 
+## Configuration
+Environment variables
+
 ## Image metadata storage
 TBD - Relational DB?
 
