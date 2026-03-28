@@ -1,10 +1,13 @@
 package main
 
 import (
+	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 
+	"github.com/jackc/pgx/v5"
 	"github.com/joho/godotenv"
 )
 
@@ -13,6 +16,7 @@ const (
 )
 
 func main() {
+	// Load env
 	err := godotenv.Load()
 	if err != nil {
 		log.Panicf("failed to load .env file: %s", err)
@@ -43,8 +47,17 @@ func main() {
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
+// TODO Remove this junk
 func handler(w http.ResponseWriter, r *http.Request) {
 	log.Println("GOT A REQUEST FOR 1", r)
+	// urlExample := "postgres://username:password@localhost:5432/database_name"
+	conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+		os.Exit(1)
+	}
+	defer conn.Close(context.Background())
+
 	w.Write([]byte("fdsafdas"))
 }
 func handler2(w http.ResponseWriter, r *http.Request) {
