@@ -2,7 +2,7 @@
 
 ## Objective
 
-`site` will be a web app for hosting photos
+`site` will be a simple web app for hosting photos and photo albums.
 
 ## MVP scope
 ### Endpoints
@@ -65,6 +65,7 @@ A Photo represents an individual photo and has the following properties:
     - ISO
 - Film vs digital label
 
+Unclear how to link db content to photos on disk/CDN. Is storing URIs a wise practice?
 
 ## Album
 
@@ -138,35 +139,37 @@ Go application
 
 Gorilla mux?
 
-## Database
-Postgresql
-
-- Migrations via https://github.com/pressly/goose
-- Driver via https://github.com/jackc/pgx
-
 ## Configuration
 Environment variables
 
 ## Image metadata storage
-TBD - Relational DB?
+This is the layer responsible for storing image metadata, tags, albums, etc.
+### Database
+Postgresql
+- Migrations via https://github.com/pressly/goose
+- Driver via https://github.com/jackc/pgx
 
-How to do migrations?
+## Static content storage
+This is the layer responsible for storing content such as image files, thumbnails, css, etc.
 
-## Tooling
-???
+For MVP phase, will use plain file directory server via Go. Closer to production, consider using CDN or something else.
 
 ## Testing, CI
-Github actions?
+CI will use Github Actions
 
-Tests
-Linter(s)
+CI should do the following:
+- Run all tests
+- Run all linter(s)
+    - TBD: decide what linters should be used
 
 ## Hosting
-Dev phase: lxc container or similar
+Dev phase:
+- LXC container or similar
+- Postgres in LXC container
 
 Production:
-TBD - EC2?
-Do you need a CDN?
+- TBD - EC2?
+- Do you need a CDN?
 
 ## Deployment
 ???
