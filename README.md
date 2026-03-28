@@ -109,6 +109,8 @@ Should show a list of photos in the album with id `{id}` ordered by creation tim
 
 ## Album photo view
 
+*TBD: Do we actually want this?*
+
 Path: `/album/{album_id}/photo/{photo_id}`
 
 As photo view, but should also provide links to next and previous photos in album.
@@ -123,6 +125,8 @@ Maybe this needs pagination?
 
 ## Tag photo view
 
+*TBD: Do we actually want this?*
+
 Path: `/tag/{tag_name}/photo/{photo_id}`
 
 As photo view, but should also provide links to next and previous photos in parent tag view.
@@ -133,6 +137,12 @@ As photo view, but should also provide links to next and previous photos in pare
 Go application
 
 Gorilla mux?
+
+## Database
+Postgresql
+
+- Migrations via https://github.com/pressly/goose
+- Driver via https://github.com/jackc/pgx
 
 ## Configuration
 Environment variables
